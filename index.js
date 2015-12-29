@@ -25,6 +25,11 @@ var epicsUrl = function(projectName) {
     return ptBaseURL +
     '/projects/' + projects[projectName] + '/epics';
 };
+var iterationsUrl = function(projectName) {
+    return ptBaseURL +
+    '/projects/' + projects[projectName] + '/iterations?scope=current_backlog';
+    // scope = 'current', 'done', 'backlog', current_backlog
+};
 
 
 // var url = 'https://www.pivotaltracker.com/services/v5';
@@ -38,11 +43,26 @@ var gripenEpics = Promise.resolve($.ajax({url: epicsUrl('gripen')}))
     console.log("epics are in!");
     _.forEach(epics, function(epic) {
         console.log(epic);
-
         $("#gstories").after("<h3><a href=\""+epic.url+"\">"+epic.label.name+"</a></h3>");
     });
-
-}).then(function() {
+    // epic.id
+    // epic.name
+    // epic.description
+    // epic.label.id
+    // epic.label.name
+    return Promise.resolve($.ajax({url: iterationsUrl('maglev')}));
+}).then(function(iterations) {
+    console.log("iterations are in");
+    console.log(iterations);
+    // iterations is an Array of objects
+    // obj.kind = "iteration"
+    // obj.stories = [array of stories]
+    // obj.stories[2].id
+    // obj.stories[2].url
+    // obj.stories[2].story_type (feature, chore, etc)
+    // obj.stories[2].name
+    // obj.stories[2].labels[1].id
+    // obj.stories[2].labels[1].name
     // get the stories
     return Promise.resolve($.ajax({url: storiesUrl('gripen')}));
 }).then(function(stories) {
@@ -51,6 +71,15 @@ var gripenEpics = Promise.resolve($.ajax({url: epicsUrl('gripen')}))
         console.log(story);
         $("#gstories").after("<li><a href=\""+story.url+"\">"+story.name+"</a></li>");
     });
+    // story.id
+    // story.labels[1].name
+    // story.labels[1].id
+    // story.story_type
+    // story.url
+    // story.estimate
+    // story.name
+    // story.current_state ('accepted','started','delivered')
+    // story.description
 });
 
 $('body').prepend('<p>Woooooooooooooot</p>');
