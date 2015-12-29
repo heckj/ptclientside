@@ -9,10 +9,12 @@
     "bundle": "browserify index.js -o bundle.js"
   },
   "author": "heckj@mac.com",
-  "license": "Apache-2",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/heckj/ptclientside.git",
   "dependencies": {
     "backbone": "^1.2.3",
     "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
     "pivotaltracker": "^0.1.4"
   },
   "devDependencies": {
