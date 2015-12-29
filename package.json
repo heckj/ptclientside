@@ -1,0 +1,22 @@
+{
+  "name": "ptclientside",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "beefy index.js:bundle.js --live --open",
+    "bundle": "browserify index.js -o bundle.js"
+  },
+  "author": "heckj@mac.com",
+  "license": "Apache-2",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "jquery": "^2.1.4",
+    "pivotaltracker": "^0.1.4"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.5",
+    "browserify": "^12.0.1"
+  }
+}
