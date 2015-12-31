@@ -1,5 +1,7 @@
 # ptclientside
 
+    http://heckj.github.io/ptclientside/
+
 jQuery in-browser dashboard showing RackHD agile team status against
 epics. Something like the PivotalTracker "epics" view in workspace, but
 only against RackHD public projects.
