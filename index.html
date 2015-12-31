@@ -1,9 +1,29 @@
 <html lang="en">
     <head><meta charset="UTF-8"><title>ptclientside</title></head>
-    <link rel="stylesheet" href="css/jquery-ui.start.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-theme.min.css"> -->
+    <!-- <link rel="stylesheet" href="css/jquery-ui.start.min.css"> -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <body>
-        <h2>gripen stories</h2>
-        <div id="gstories"></div>
-        <script src="/bundle.js" type="text/javascript"></script>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="text-center">RackHD Roadmap</h2>
+                </div>
+                <div class="col-sm-3" id="gripen">
+                    <i class="fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+                <div class="col-sm-3" id="maglev">
+                    <i class="fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+                <div class="col-sm-3" id="monorail">
+                    <i class="fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+                <div class="col-sm-3" id="stryker">
+                    <i class="fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+                <script src="/bundle.js" type="text/javascript"></script>
+            </div>  <!-- row -->
+        </div> <!-- container-fluid -->
     </body>
 </html>

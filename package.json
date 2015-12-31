@@ -13,6 +13,7 @@
   "repository": "https://github.com/heckj/ptclientside.git",
   "dependencies": {
     "bluebird": "^3.1.1",
+    "bootstrap": "^3.3.6",
     "jquery": "^2.1.4",
     "jquery-ui": "^1.10.5",
     "lodash": "^3.10.1",
