@@ -37,23 +37,24 @@ var iterationsUrl = function(projectName) {
 // url += '&limit=20';
 
 var sizeFromEstimate = function(value) {
-    if (value > 1.1 && value < 3.1) {
-        //2 or 3
-        return "fa-lg";
-    }
-    if (value > 3.1 && value < 5.1) {
-        //4 or 5
-        return "fa-2x";
-    }
-    if (value > 5.1 && value < 7.9) {
-        // 6 or 7
-        return "fa-3x";
-    }
-    if (value > 7.9) {
-        // 8+
-        return "fa-4x";
-    }
-    return "";
+    return "fa-lg";
+    // if (value > 1.1 && value < 3.1) {
+    //     //2 or 3
+    //     return "fa-lg";
+    // }
+    // if (value > 3.1 && value < 5.1) {
+    //     //4 or 5
+    //     return "fa-2x";
+    // }
+    // if (value > 5.1 && value < 7.9) {
+    //     // 6 or 7
+    //     return "fa-3x";
+    // }
+    // if (value > 7.9) {
+    //     // 8+
+    //     return "fa-4x";
+    // }
+    // return "";
 };
 
 var contextColorFromState = function(current_state) {
@@ -62,13 +63,14 @@ var contextColorFromState = function(current_state) {
         return "text-muted";
     }
     if (current_state == "unscheduled") {
+        // return "text-muted";
         return "text-warning";
     }
     if (current_state == "delivered" || current_state == "finished" ) {
-        return "text-success";
+        return "text-primary";
     }
     if (current_state == "accepted" || current_state == "started" ) {
-        return "text-primary";
+        return "text-success";
     }
     if (current_state == "rejected" ) {
         return "text-danger";
@@ -124,7 +126,7 @@ var retrievePivotalTrackerData = function(projectName) {
                 // $(#123456) represents the panel for the epic in the label
                 if (story.estimate) {
                     $("#"+story.labels[0].id+" .panel-body")
-                    .append("<a href=\""+story.url+"\"><i class=\"fa fa-gear "+sizeFromEstimate(story.estimate)+
+                    .append("<a href=\""+story.url+"\"><i class=\"fa fa-square "+sizeFromEstimate(story.estimate)+
                     " "+contextColorFromState(story.current_state)+"\"></i></a>");
                 } else {
                     $("#"+story.labels[0].id+" .panel-body")
@@ -146,7 +148,11 @@ var retrievePivotalTrackerData = function(projectName) {
     });
 };
 
-_.forEach(projects, function(projectId, projectName) {
-    console.log("retrieving data for ", projectName);
-    retrievePivotalTrackerData(projectName);
-});
+var loadProjects = function() {
+    _.forEach(projects, function(projectId, projectName) {
+        console.log("retrieving data for ", projectName);
+        retrievePivotalTrackerData(projectName);
+    });
+};
+
+loadProjects();
