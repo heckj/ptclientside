@@ -1,8 +1,20 @@
 # ptclientside
 
-browserify application for making a quick client-side (in browser) application against remote resources
+jQuery in-browser dashboard showing RackHD agile team status against
+epics. Something like the PivotalTracker "epics" view in workspace, but
+only against RackHD public projects.
 
-## GO
+Developed with browserify, jquery, bootstrap, and font-awesome
+
+## local development
 
     npm install
     npm start
+
+## deploy to github pages
+
+    git checkout gh-pages
+    npm run bundle
+    git commit bundle.js -m "updated bundle"
+    git rebase -i origin/master gh-pages
+    git push origin gh-pages -f
