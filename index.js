@@ -120,10 +120,10 @@ var retrievePivotalTrackerData = function(projectName) {
         $("#"+projectName+" .fa-spinner").hide();
         console.log("stories are in for "+projectName);
         _.forEach(stories, function(story) {
-            console.log(story);
+            // console.log(story);
             // console.log(story.labels[0].id);
             if(story.labels && story.labels[0] && $("#"+story.labels[0].id)) {
-                console.log("INSERT!");
+                // console.log("INSERT!");
                 // $(#123456) represents the panel for the epic in the label
                 if (story.estimate) {
                     $("#"+story.labels[0].id+" .panel-body")
@@ -149,11 +149,50 @@ var retrievePivotalTrackerData = function(projectName) {
     });
 };
 
+
+var retrieveGithubTrackerData = function() {
+    var util = require('util');
+    var Github = require("github-api");
+    var github = new Github({});
+    var repo = github.getRepo('rackhd','rackhd');
+
+    repo.show(function(err, repo) {
+        // console.log("err is", err);
+        // console.log("repo is ", repo);
+        $("#github .fa-spinner").hide();
+        $("#github").append("<a href=\"https://github.com/rackhd\">RackHD</a> stars: "+repo.stargazers_count);
+        // console.log(util.inspect(github));
+    });
+
+    var pullrequests = github.getSearch("is%3Aopen+is%3Apr+user%3ARackHD");
+    console.log("pullrequests are ", pullrequests);
+    pullrequests.issues({}, function (err, prs) {
+        // console.log("err is", err);
+        // console.log("PRs are ", prs);
+        $("#github").append("<p>Pull Requests: "+prs.total_count+"</p><ul class=\"pullrequests\"></ul>");
+        _.forEach(prs.items, function(pullrequest) {
+            $("#github .pullrequests").append("<li><a href=\""+pullrequest.html_url+"\">"+pullrequest.title+"</a>");
+        });
+    });
+
+    var buglist = github.getSearch("is%3Aopen+is%3Aissue+user%3ARackHD+label%3Abug");
+    buglist.issues({}, function (err, bugs) {
+        // console.log("err is", err);
+        // console.log("issues are ", bugs);
+        $("#github").append("<p>Bugs: "+bugs.total_count+"</p><ul class=\"buglist\"></ul>");
+        _.forEach(bugs.items, function(issue) {
+            $("#github .buglist").append("<li><a href=\""+issue.html_url+"\">"+issue.title+"</a>");
+        });
+    });
+
+
+};
 var loadProjects = function() {
     _.forEach(projects, function(projectId, projectName) {
         console.log("retrieving data for ", projectName);
         retrievePivotalTrackerData(projectName);
     });
+    retrieveGithubTrackerData();
 };
 
 loadProjects();
