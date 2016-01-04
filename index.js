@@ -84,13 +84,13 @@ var retrievePivotalTrackerData = function(projectName) {
     var gripenEpics = Promise.resolve($.ajax({url: epicsUrl(projectName)}))
     .then(function(epics) {
         // console.log("epics are in!");
-        $("#"+projectName).append("<h3>"+projectName+"</h3>");
+        $("#"+projectName).append("<h3><a href=\"https://www.pivotaltracker.com/n/projects/"+projects[projectName]+"\">"+projectName+"</a></h3>");
         _.forEach(epics, function(epic) {
             // console.log(epic);
             $("#"+projectName)
             .append("<div class=\"panel panel-info\" id=\""+epic.label.id+"\"></div>");
             $("#"+epic.label.id)
-            .append("<div class=\"panel-heading\"><h3 class=\"panel-title\" type=\"button\"><a href=\""+epic.url+"\"><i class=\"fa fa-external-link\"></i></a>&nbsp;"+epic.label.name+"</h3></div>")
+            .append("<div class=\"panel-heading\"><h3 class=\"panel-title\" type=\"button\"><a href=\""+epic.url+"\" target=\"_blank\"><i class=\"fa fa-external-link\"></i></a>&nbsp;"+epic.label.name+"</h3></div>")
             .append("<div class=\"panel-body\"></div>");
         });
         // epic.id
